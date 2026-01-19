@@ -93,15 +93,14 @@ class ContextAlgorithm:
                 reasons.append(f"Functionality matched: {list(input_funcs)}")
             else:
                 # PENALTY: User asked for Waterproofing, Detail doesn't have it.
-                score -= 0.25
+                score -= 0.05
                 reasons.append(f"MISSING required function: {list(missing_funcs)}")
 
         # Case B: Target has functionality, but Input didn't ask for it
         # (e.g. Input: "Wall-Slab", Target: "Wall-Slab Waterproofing")
         elif target_funcs:
-            # Slight Penalty for specificity mismatch (Uncertainty)
             # We don't penalize too hard because it might still be the right detail
-            score += 0.1
+            score += 0.0
             reasons.append(f"Note: Detail is specific to {list(target_funcs)}")
 
         else:
